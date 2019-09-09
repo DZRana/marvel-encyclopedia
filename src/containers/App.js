@@ -3,6 +3,7 @@ import "./App.css";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import CardList from "../components/CardList";
+import "tachyons";
 
 const ts = 1;
 const privateKey = "b05f170acb57641060db8f283c2d5394d6629f8d";
