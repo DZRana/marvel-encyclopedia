@@ -14,37 +14,50 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      characters: [],
-      searchfield: ""
+      characters: []
     };
   }
 
   componentDidMount() {
     fetch(
+      // `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${this.state.searchfield}&ts=${ts}&apikey=${publicKey}&hash=${hash}`
       `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`
     )
       .then(response => response.json())
       .then(chars => this.setState({ characters: chars.data.results }));
   }
 
+  // Every time you make your own methods on a component use the following syntax (arrow function):
   onSearchChange = event => {
-    this.setState({ searchfield: event.target.value });
+    if (event.target.value !== "") {
+      fetch(
+        `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${event.target.value}&ts=${ts}&apikey=${publicKey}&hash=${hash}`
+      )
+        .then(response => response.json())
+        .then(chars => this.setState({ characters: chars.data.results }));
+      console.log(this.state.characters);
+    }
   };
 
   render() {
-    const { characters, searchfield } = this.state;
-    const filteredCharacters = characters.filter(character => {
-      return character.name.toLowerCase().includes(searchfield.toLowerCase());
-    });
-    console.log(filteredCharacters);
+    const { characters } = this.state;
+
     return !characters.length ? (
-      <h1>Loading</h1>
+      <div className="tc">
+        <h1 className="f1">Marvel Encyclopedia</h1>
+        {/*USE this. below ("this" keyword) as we are in an object (class App is an OBJECT!*/}
+        <SearchBox searchChange={this.onSearchChange} />
+        <Scroll>
+          <h2>No Results</h2>
+        </Scroll>
+      </div>
     ) : (
       <div className="tc">
         <h1 className="f1">Marvel Encyclopedia</h1>
+        {/*USE this. below ("this" keyword) as we are in an object (class App is an OBJECT!*/}
         <SearchBox searchChange={this.onSearchChange} />
         <Scroll>
-          <CardList characters={filteredCharacters} />
+          <CardList characters={characters} />
         </Scroll>
       </div>
     );
