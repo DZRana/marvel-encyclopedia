@@ -1,16 +1,16 @@
 import React from "react";
 
-const SearchBox = ({ searchChange }) => {
+const FilterBox = ({ filterChange }) => {
   return (
     <div className="pa2">
       <input
         className="pa3 ba b--green bg-lightest-blue"
         type="search"
-        placeholder="starts with..."
-        onKeyDown={searchChange}
+        placeholder="filter results"
+        onChange={filterChange}
       />
     </div>
   );
 };
 
-export default SearchBox;
+export default FilterBox;
