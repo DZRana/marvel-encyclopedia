@@ -29,7 +29,6 @@ class App extends Component {
     this.setState({ characters: json.data.results });
   }
 
-  // TODO: this doesn't work right because onSearchChange is called for every single key pressed and keeps calling the api. i need to separate the two behaviors. one for a search, one for a filter (there's still an issue with 20 char limit... maybe infinite scroll load more?!);
   async callAPI(event) {
     const response = await fetch(
       `${request}&nameStartsWith=${event.target.value}`
@@ -38,10 +37,8 @@ class App extends Component {
     this.setState({ characters: json.data.results });
   }
 
-  // Every time you make your own methods on a component use the following syntax (arrow function):
   onSearchChange = event => {
     if (event.keyCode === 13) {
-      console.log("enter pressed");
       this.callAPI(event);
     }
   };
@@ -59,11 +56,9 @@ class App extends Component {
     return (
       <div className="tc">
         <h1 className="f1">Marvel Encyclopedia</h1>
-        {/*USE this. below ("this" keyword) as we are in an object (class App is an OBJECT!*/}
         <SearchBox searchChange={this.onSearchChange} />
         <FilterBox filterChange={this.onFilterChange} />
         <Scroll>
-          {/*See "Use && for a More Concise Conditional" from FCC about the &&*/}
           {!characters.length && <h2>No Results</h2>}
           <CardList characters={filteredChars} />
         </Scroll>
