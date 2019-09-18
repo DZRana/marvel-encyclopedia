@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/marvel-encyclopedia/static/css/main.9322591f.chunk.css",
+    "main.js": "/marvel-encyclopedia/static/js/main.4d594603.chunk.js",
+    "main.js.map": "/marvel-encyclopedia/static/js/main.4d594603.chunk.js.map",
+    "runtime~main.js": "/marvel-encyclopedia/static/js/runtime~main.98c20808.js",
+    "runtime~main.js.map": "/marvel-encyclopedia/static/js/runtime~main.98c20808.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/marvel-encyclopedia/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.569d8a35.chunk.js": "/marvel-encyclopedia/static/js/2.569d8a35.chunk.js",
+    "static/js/2.569d8a35.chunk.js.map": "/marvel-encyclopedia/static/js/2.569d8a35.chunk.js.map",
+    "index.html": "/marvel-encyclopedia/index.html",
+    "precache-manifest.7887f882ba586f828c8edd592bd2c93a.js": "/marvel-encyclopedia/precache-manifest.7887f882ba586f828c8edd592bd2c93a.js",
+    "service-worker.js": "/marvel-encyclopedia/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/marvel-encyclopedia/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.9322591f.chunk.css.map": "/marvel-encyclopedia/static/css/main.9322591f.chunk.css.map"
+  }
+}
