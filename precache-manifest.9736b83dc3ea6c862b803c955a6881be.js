@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e99071233174e217eb8769817ffc3bbd",
+    "revision": "9bbd694fdb52f411e41f254b03369116",
     "url": "/marvel-encyclopedia/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/marvel-encyclopedia/static/css/2.31dafeb2.chunk.css"
   },
   {
-    "revision": "b64a840e4e21dfc82474",
+    "revision": "635cd70faeda7b608d06",
     "url": "/marvel-encyclopedia/static/css/main.9322591f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/marvel-encyclopedia/static/js/2.569d8a35.chunk.js"
   },
   {
-    "revision": "b64a840e4e21dfc82474",
-    "url": "/marvel-encyclopedia/static/js/main.4d594603.chunk.js"
+    "revision": "635cd70faeda7b608d06",
+    "url": "/marvel-encyclopedia/static/js/main.7928ee63.chunk.js"
   },
   {
     "revision": "fd4a00f8277a3c1b36af",
