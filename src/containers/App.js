@@ -1,3 +1,9 @@
+/* TODO:
+1. API call loading screen.
+2. Handle empty string search query.
+3. Hide the API keys.
+*/
+
 import React, { Component } from "react";
 import "./App.css";
 import SearchBox from "../components/SearchBox";
