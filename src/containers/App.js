@@ -11,12 +11,12 @@ import Scroll from "../components/Scroll";
 import CardList from "../components/CardList";
 import FilterBox from "../components/FilterBox";
 import "tachyons";
+import md5 from "md5";
 
 const limit = 100;
 const ts = 1;
 const privateKey = "b05f170acb57641060db8f283c2d5394d6629f8d";
 const publicKey = "aeffa8b2b5b151f4e5dbc712f57cfa64";
-var md5 = require("md5");
 const hash = md5(ts + privateKey + publicKey);
 const request = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
 
