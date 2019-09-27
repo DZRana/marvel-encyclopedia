@@ -2,6 +2,7 @@
 1. API call loading screen.
 2. Handle empty string search query.
 3. Hide the API keys.
+4. Update ReadMe
 */
 
 import React, { Component } from "react";
