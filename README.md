@@ -4,7 +4,7 @@ An application that uses the Marvel API to fetch and display Marvel characters w
 
 ## Demo
 
-![Marvel Encyclopedia Demo](demo/m-e_sample.gif)
+![Marvel Encyclopedia Demo](demo/m-e_demo.gif)
 
 ## Installation and Setup Instructions
 
