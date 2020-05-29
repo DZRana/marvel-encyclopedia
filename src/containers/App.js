@@ -1,11 +1,3 @@
-/* TODO:
-1. API call loading screen.
-2. Handle empty string search query.
-3. Hide the API keys.
-4. Change Title icon.
-5. Update Readme.
-*/
-
 import React, { Component } from "react";
 import "./App.css";
 import SearchBox from "../components/SearchBox";
@@ -17,8 +9,8 @@ import md5 from "md5";
 
 const limit = 100;
 const ts = 1;
-const privateKey = "b05f170acb57641060db8f283c2d5394d6629f8d";
-const publicKey = "aeffa8b2b5b151f4e5dbc712f57cfa64";
+const privateKey = process.env.REACT_APP_PRIVATE_KEY;
+const publicKey = process.env.REACT_APP_PUBLIC_KEY;
 const hash = md5(ts + privateKey + publicKey);
 const request = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
 
@@ -27,7 +19,8 @@ class App extends Component {
     super();
     this.state = {
       characters: [],
-      filterStr: ""
+      filterStr: "",
+      loading: false
     };
   }
 
@@ -38,15 +31,16 @@ class App extends Component {
   }
 
   async callAPI(event) {
+    this.setState({ loading: true });
     const response = await fetch(
       `${request}&nameStartsWith=${event.target.value}`
     );
     const json = await response.json();
-    this.setState({ characters: json.data.results });
+    this.setState({ characters: json.data.results, loading: false });
   }
 
   onSearchChange = event => {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && event.target.value !== "") {
       this.callAPI(event);
     }
   };
@@ -56,7 +50,7 @@ class App extends Component {
   };
 
   render() {
-    const { characters, filterStr } = this.state;
+    const { characters, filterStr, loading } = this.state;
     const filteredChars = characters.filter(character => {
       return character.name.toLowerCase().includes(filterStr.toLowerCase());
     });
@@ -67,8 +61,9 @@ class App extends Component {
         <SearchBox searchChange={this.onSearchChange} />
         <FilterBox filterChange={this.onFilterChange} />
         <Scroll>
-          {!characters.length && <h2>No Results</h2>}
-          <CardList characters={filteredChars} />
+          {!characters.length && !loading && <h2>No Results</h2>}
+          {loading && <h2>Loading</h2>}
+          {!loading && <CardList characters={filteredChars} />}
         </Scroll>
       </div>
     );
