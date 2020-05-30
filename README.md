@@ -2,7 +2,9 @@
 
 An application that uses the Marvel API to fetch and display Marvel characters which link to their respective bio.
 
-## Demo
+## Live Demo
+
+https://dzrana.github.io/marvel-encyclopedia/
 
 ![Marvel Encyclopedia Demo](demo/m-e_demo.gif)
 
