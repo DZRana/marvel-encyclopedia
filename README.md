@@ -1,6 +1,6 @@
 # Marvel Encyclopedia
 
-An application that uses the Marvel API to fetch and display Marvel characters which link to their respective bios on the Marvel website.
+A React application that uses the Marvel API to fetch and display Marvel characters which link to their respective bios on the Marvel website.
 
 ## Live Demo
 
