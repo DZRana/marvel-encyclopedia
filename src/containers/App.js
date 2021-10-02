@@ -14,13 +14,17 @@ const publicKey = process.env.REACT_APP_PUBLIC_KEY;
 const hash = md5(ts + privateKey + publicKey);
 const request = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
 
+// const App = () => {
+
+// }
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       characters: [],
       filterStr: "",
-      loading: false
+      loading: false,
     };
   }
 
@@ -39,19 +43,19 @@ class App extends Component {
     this.setState({ characters: json.data.results, loading: false });
   }
 
-  onSearchChange = event => {
+  onSearchChange = (event) => {
     if (event.keyCode === 13 && event.target.value !== "") {
       this.callAPI(event);
     }
   };
 
-  onFilterChange = event => {
+  onFilterChange = (event) => {
     this.setState({ filterStr: event.target.value });
   };
 
   render() {
     const { characters, filterStr, loading } = this.state;
-    const filteredChars = characters.filter(character => {
+    const filteredChars = characters.filter((character) => {
       return character.name.toLowerCase().includes(filterStr.toLowerCase());
     });
 
