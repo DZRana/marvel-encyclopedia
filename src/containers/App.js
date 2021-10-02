@@ -15,7 +15,7 @@ const hash = md5(ts + privateKey + publicKey);
 const request = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
 
 // const App = () => {
-// test 2
+// test 3
 // }
 
 class App extends Component {
