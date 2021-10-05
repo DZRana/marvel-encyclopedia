@@ -1,15 +1,15 @@
 {
-  "homepage": "https://dzrana.github.io/marvel-encyclopedia/",
-  "name": "marvel-encyclopedia",
   "homepage": "http://dzrana.github.io/marvel-encyclopedia",
+  "name": "marvel-encyclopedia",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "md5": "^2.2.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "axios": "^0.22.0",
+    "md5": "^2.3.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-scripts": "3.1.1",
-    "tachyons": "^4.11.1"
+    "tachyons": "^4.12.0"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -17,9 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,6 +35,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.2.0"
   }
 }
