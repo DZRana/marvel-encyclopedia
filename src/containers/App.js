@@ -1,73 +1,55 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import CardList from "../components/CardList";
 import FilterBox from "../components/FilterBox";
 import "tachyons";
-import md5 from "md5";
+import marvel from "../apis/marvel";
 
-const limit = 100;
-const ts = 1;
-const privateKey = process.env.REACT_APP_PRIVATE_KEY;
-const publicKey = process.env.REACT_APP_PUBLIC_KEY;
-const hash = md5(ts + privateKey + publicKey);
-const request = `https://gateway.marvel.com:443/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+const App = () => {
+  const [characters, setCharacters] = useState([]);
+  const [filterStr, setFilterStr] = useState("");
+  const [loadingFlag, setLoadingFlag] = useState(false);
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      characters: [],
-      filterStr: "",
-      loading: false
-    };
-  }
-
-  async componentDidMount() {
-    const response = await fetch(request);
-    const json = await response.json();
-    this.setState({ characters: json.data.results });
-  }
-
-  async callAPI(event) {
-    this.setState({ loading: true });
-    const response = await fetch(
-      `${request}&nameStartsWith=${event.target.value}`
-    );
-    const json = await response.json();
-    this.setState({ characters: json.data.results, loading: false });
-  }
-
-  onSearchChange = event => {
-    if (event.keyCode === 13 && event.target.value !== "") {
-      this.callAPI(event);
-    }
+  const initialSearch = async () => {
+    const response = await marvel.get("/characters");
+    setCharacters(response.data.data.results);
   };
 
-  onFilterChange = event => {
-    this.setState({ filterStr: event.target.value });
-  };
-
-  render() {
-    const { characters, filterStr, loading } = this.state;
-    const filteredChars = characters.filter(character => {
-      return character.name.toLowerCase().includes(filterStr.toLowerCase());
+  const onSearchSubmit = async (character) => {
+    setLoadingFlag(true);
+    const response = await marvel.get("/characters", {
+      params: { nameStartsWith: character },
     });
+    setCharacters(response.data.data.results);
+    setLoadingFlag(false);
+  };
 
-    return (
-      <div className="tc">
-        <h1 className="f1">Marvel Encyclopedia</h1>
-        <SearchBox searchChange={this.onSearchChange} />
-        <FilterBox filterChange={this.onFilterChange} />
-        <Scroll>
-          {!characters.length && !loading && <h2>No Results</h2>}
-          {loading && <h2>Loading</h2>}
-          {!loading && <CardList characters={filteredChars} />}
-        </Scroll>
-      </div>
-    );
-  }
-}
+  const onFilterChange = (event) => {
+    setFilterStr(event.target.value);
+  };
+
+  const filteredChars = characters.filter((character) => {
+    return character.name.toLowerCase().includes(filterStr.toLowerCase());
+  });
+
+  useEffect(() => {
+    initialSearch();
+  }, []);
+
+  return (
+    <div className="tc">
+      <h1 className="f1">Marvel Encyclopedia</h1>
+      <SearchBox onSearchSubmit={onSearchSubmit} />
+      <FilterBox onFilterChange={onFilterChange} />
+      <Scroll>
+        {!characters.length && !loadingFlag && <h2>No Results</h2>}
+        {loadingFlag && <h2>Loading</h2>}
+        {!loadingFlag && <CardList characters={filteredChars} />}
+      </Scroll>
+    </div>
+  );
+};
 
 export default App;
